@@ -82,8 +82,9 @@ def main():
     # params = yaml.safe_load(open(params_file))["train_model"]
 
     model_file = sys.argv[1]
+    model_file_path = home_dir.as_posix() +  model_file
     # Load the model.
-    model = joblib.load(model_file)
+    model = joblib.load(model_file_path)
     
     # Load the data.
     input_file = sys.argv[2]

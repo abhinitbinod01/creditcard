@@ -1,63 +1,63 @@
 schema: '2.0'
 stages:
   make_dataset:
-    cmd: python .\src\data\make_dataset.py .\data\raw\creditcard.csv
+    cmd: python ./src/data/make_dataset.py /data/raw/creditcard.csv
     deps:
-    - path: .\data\raw\creditcard.csv
+    - path: ./data/raw/creditcard.csv
       hash: md5
-      md5: e8ffcd27762aaf279e268eb849a060f9
-      size: 150825054
-    - path: .\src\data\make_dataset.py
+      md5: e90efcb83d69faf99fcab8b0255024de
+      size: 150828752
+    - path: ./src/data/make_dataset.py
       hash: md5
-      md5: 5d87ea0853101b748b17af0be510c2ac
-      size: 1314
+      md5: 6c21118256e4709dbab14a53c1ffbcb3
+      size: 1275
     params:
       params.yaml:
         make_dataset.seed: 2023
         make_dataset.test_split: 0.2
     outs:
-    - path: .\data\processed\
+    - path: ./data/processed/
       hash: md5
-      md5: b21101ae3f5090f5af39e6f9cbdb21c3.dir
-      size: 151098829
+      md5: e32c72bbc62b5db33639757f1fa1164a.dir
+      size: 150817718
       nfiles: 2
   train_model:
-    cmd: python .\src\models\train_model.py .\data\processed\
+    cmd: python ./src/models/train_model.py /data/processed/
     deps:
-    - path: .\data\processed\
+    - path: ./data/processed/
       hash: md5
-      md5: b21101ae3f5090f5af39e6f9cbdb21c3.dir
-      size: 151098829
+      md5: e32c72bbc62b5db33639757f1fa1164a.dir
+      size: 150817718
       nfiles: 2
-    - path: .\src\models\train_model.py
+    - path: ./src/models/train_model.py
       hash: md5
-      md5: 5af92edffd22804f29af18c1efe94bbb
-      size: 1362
+      md5: ac5b378ca7a5a11aeb9b2a773a19af55
+      size: 1318
     outs:
-    - path: .\models\
+    - path: ./models/
       hash: md5
-      md5: 6191af90def2b514e1128c7d91ae5877.dir
-      size: 397817
+      md5: bbe23da5870297cd938602dfa2cf92bb.dir
+      size: 399641
       nfiles: 1
   visualize:
-    cmd: python .\src\visualization\visualize.py .\models\model.joblib .\data\processed\
+    cmd: python ./src/visualization/visualize.py /models/model.joblib /data/processed/
     deps:
-    - path: .\data\processed\
+    - path: ./data/processed/
       hash: md5
-      md5: 45207c27b5aec2846e4532f5bee1631f.dir
-      size: 151098829
+      md5: e32c72bbc62b5db33639757f1fa1164a.dir
+      size: 150817718
       nfiles: 2
-    - path: .\models\model.joblib
+    - path: ./models/model.joblib
       hash: md5
-      md5: e01830bd03da0f4f328c34580d40d5b3
-      size: 3865
-    - path: .\src\visualization\visualize.py
+      md5: 979f14c975a49bfd16eb08a9b7effbdd
+      size: 399641
+    - path: ./src/visualization/visualize.py
       hash: md5
-      md5: db86d2e43c664f095353e9ba6afe3393
-      size: 3687
+      md5: 53f0aa77ca484b8af65e351f9fd6af8e
+      size: 3631
     outs:
     - path: dvclive
       hash: md5
-      md5: e887b02afa678d483c083f4d3632dc94.dir
-      size: 18530385
+      md5: 42bb9795dbfc7294188d3f7b155b063a.dir
+      size: 18830121
       nfiles: 8
